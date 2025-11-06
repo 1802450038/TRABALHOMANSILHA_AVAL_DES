@@ -1,3 +1,6 @@
+#PYTHON
 pandas
 scikit-learn
 numpy
+#JAVA
+#Você precisará compilar: javac AnaliseWorkload.java e executar: java AnaliseWorkload

@@ -2,33 +2,34 @@
 
 ## Objetivo
 
-[cite_start]Este repositório contém os scripts e dados para a "Proposta de Trabalho"  que realiza uma análise comparativa de desempenho entre PHP, Java e Python. O foco é avaliar o comportamento dessas linguagens em modos síncrono e assíncrono sob uma carga de trabalho ETL intensiva em I/O.
+Este repositório contém os scripts e dados para a "Proposta de Trabalho" que realiza uma análise comparativa de desempenho entre PHP, Java e Python, com foco em operações síncronas e assíncronas.
 
-## Metodologia (Workload)
+O objetivo é executar um *workload* de ETL idêntico em cada linguagem, medir o desempenho (tempo, memória, CPU) e, em seguida, analisar os resultados coletados.
 
-[cite_start]O *workload* principal, descrito na [Proposta de Trabalho (3).pdf](Proposta%20de%20Trabalho%20(3).pdf), consiste em um script de ETL que executa as seguintes etapas para mais de 100.000 registros:
+## Fluxo de Trabalho
 
-1.  **Extração**: Lê um registro do arquivo `202210_PEP.csv`.
-2.  **Transformação**: Para cada registro:
-    * Conecta-se a um banco de dados MySQL.
-    * Executa um `SELECT` na tabela `cargos` (povoada por `FUN.csv`) para obter o `id` correspondente à `Descrição_Função`.
-    * Executa um `SELECT` na tabela `cidades` (povoada por `ORG.csv`) para obter o `id` correspondente ao `Nome_Órgão`.
-3.  **Carga**: Insere o `CPF`, `Nome_PEP`, `cargo_id` e `cidade_id` na tabela `pessoas`.
+O processo é dividido em duas fases:
 
-Este processo é implementado em:
-* **PHP**: Síncrono (PDO) e Assíncrono (Swoole).
-* **Java**: Síncrono (JDBC) e Assíncrono (R2DBC).
-* **Python**: Síncrono (mysql-connector) e Assíncrono (aiomysql).
+**Fase 1: Execução do Workload (Coleta de Dados)**
+1.  Use o script `setup_database.py` para criar o banco de dados e popular as tabelas de *lookup* (`cargos`, `cidades`) com os dados de `FUN.csv` e `ORG.csv`.
+2.  Execute os scripts de ETL encontrados na pasta `/scripts_etl` (ex: `etl_python.py`, `etl_php.php`).
+3.  **Cada script de ETL é responsável por:**
+    * Executar a tarefa de ETL (ler `202210_PEP.csv`, consultar o DB, inserir em `pessoas`).
+    * Medir o próprio tempo de execução e o pico de uso de memória.
+    * Anexar uma nova linha com esses resultados ao arquivo `resultados_workload.csv`.
 
-## Análise (Caracterização do Workload)
+**Fase 2: Análise dos Resultados (Caracterização do Workload)**
+1.  Após executar *todos* os testes (diferentes linguagens, modos, arquiteturas), o arquivo `resultados_workload.csv` estará completo.
+2.  Execute o script de análise em Python (`scripts_analise/analise_workload.py`).
+3.  Este script lerá o `resultados_workload.csv` e aplicará as técnicas de caracterização (Média, K-Means Clustering, PCA) para analisar os dados e gerar *insights*.
 
-Os scripts na pasta `/analise` são usados para analisar os dados de desempenho (tempo, CPU, memória) coletados e salvos em `resultados_workload.csv`. [cite_start]Esta análise utiliza técnicas (como Média, Clustering e PCA) discutidas na aula de "Caracterização de Workloads".
+## Estrutura do Repositório
 
-## Estrutura
-
-* `/dados_lookup`: Contém os CSVs (`FUN.csv`, `ORG.csv`) usados para povoar o banco de dados.
+* `/dados_lookup`: Contém `FUN.csv` e `ORG.csv` para popular o DB.
 * `/dados_entrada`: Contém o arquivo `202210_PEP.csv` a ser processado.
-* `/scripts_etl`: Contém os scripts de *workload* (PHP, Java, Python).
-* `/scripts_analise`: Contém os scripts para *caracterização* dos resultados (PCA, Média, etc.).
-* `setup_database.py`: Script auxiliar para criar e popular o banco de dados.
-* `resultados_workload.csv`: Arquivo-exemplo contendo os resultados das métricas de desempenho (a ser preenchido).
+* `/scripts_etl`: (Fase 1) Scripts de *workload* (PHP, Java, Python) que executam a tarefa e salvam seus resultados.
+* `/saida_esperada`: Contém o arquivo `RESALL.csv` resultado esperado.
+* `/scripts_analise`: (Fase 2) Script Python que analisa os resultados coletados.
+* `setup_database.py`: (Pré-requisito) Script para preparar o ambiente do banco de dados.
+* `resultados_workload.csv`: (Arquivo de Saída) O arquivo mestre onde *todos* os scripts de ETL anexam seus resultados.
+* `requirements.txt`: Dependências Python (para *ambas* as fases).
