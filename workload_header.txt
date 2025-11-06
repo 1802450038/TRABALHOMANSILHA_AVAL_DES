@@ -1,0 +1,1 @@
+linguagem,modo,arquitetura,carga_registros,tempo_total_s,pico_memoria_mb,media_cpu_percent
