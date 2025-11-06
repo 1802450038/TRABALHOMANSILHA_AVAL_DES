@@ -27,7 +27,7 @@ O processo é dividido em duas fases:
 
 * `/dados_lookup`: Contém `FUN.csv` e `ORG.csv` para popular o DB.
 * `/dados_entrada`: Contém o arquivo `202210_PEP.csv` a ser processado.
-* `/scripts_etl`: (Fase 1) Scripts de *workload* (PHP, Java, Python) que executam a tarefa e salvam seus resultados.
+* `/scripts_etl`: (Fase 1) Scripts de *workload* (PHP, Java, Python) que executam a tarefa e salvam seus resultados (FALTA SER DESENVOLVIDO).
 * `/saida_esperada`: Contém o arquivo `RESALL.csv` resultado esperado.
 * `/scripts_analise`: (Fase 2) Script Python que analisa os resultados coletados.
 * `setup_database.py`: (Pré-requisito) Script para preparar o ambiente do banco de dados.

@@ -2,5 +2,8 @@
 pandas
 scikit-learn
 numpy
+mysql-connector-python
+aiomysql
+aiofiles
 #JAVA
 #Você precisará compilar: javac AnaliseWorkload.java e executar: java AnaliseWorkload
