@@ -13,8 +13,8 @@ import sys
 DB_CONFIG = {
     'host': 'localhost', 'user': 'root', 'password': 'C@maro13', 'db': 'trabalho_pep'
 }
-PEP_FILE_PATH = 'dados_entrada/202210_PEP.csv'
-RESULT_FILE_PATH = 'resultados_workload.csv'
+PEP_FILE_PATH = '../../dados_entrada/202210_PEP.csv'
+RESULT_FILE_PATH = '../results/resultados_workload_py.csv'
 # ---------------------
 
 # Colunas que vamos ler do PEP.csv
