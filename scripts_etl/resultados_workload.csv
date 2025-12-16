@@ -1,0 +1,8 @@
+linguagem,modo,arquitetura,carga_registros,tempo_total_s,pico_memoria_mb,media_cpu_percent
+java,sync,arm,100,0,17,35,42,100,00
+java,sync,arm,100,0,22,22,41,100,00
+java,sync,arm,100,0,21,22,35,100,00
+java,sync,arm,100,0,20,21,18,100,00
+java,async,arm,10000,0,16,21,21,100,00
+java,async,arm,10000,0,17,21,87,100,00
+java,sync,arm,10000,2,39,114,60,100,00

@@ -1,1 +1,2 @@
 linguagem,modo,arquitetura,carga_registros,tempo_total_s,pico_memoria_mb,media_cpu_percent
+#python,async,arm,1000,12.34,150,75

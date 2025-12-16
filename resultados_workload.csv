@@ -1,1 +1,5 @@
-linguagem,modo,arquitetura,carga_registros,tempo_total_s,pico_memoria_mb,media_cpu_percent
+linguagem,modo,arquitetura,carga_registros,tempo_total_s,pico_memoria_mb,media_cpu_percentpython,
+async,arm,10000,2.44,126288.00,45.50
+python,async,arm,100000,26.44,446384.00,45.50
+python,async,arm,100000,26.13,475568.00,100.00
+python,sync,arm,100000,27.89,157504.00,100.00

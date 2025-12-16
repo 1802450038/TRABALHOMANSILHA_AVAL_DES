@@ -6,7 +6,7 @@ import sys
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'seu_password_aqui'
+    'password': 'C@maro13'
 }
 DB_NAME = 'trabalho_pep'
 # -------------------------------------
