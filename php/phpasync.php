@@ -8,13 +8,13 @@ $server = new Server("127.0.0.1", 8081);
 
 // --- ADICIONE ESTE BLOCO ---
 $server->set([
-    'worker_num' => 4, // Define 4 processos (ajuste conforme seus núcleos de CPU)
-    'reactor_num' => 4 // Threads para gerenciar conexões TCP
+    'worker_num' => 32, // Define 4 processos (ajuste conforme seus núcleos de CPU)
+    'reactor_num' => 32 // Threads para gerenciar conexões TCP
 ]);
 // ---------------------------
 
 $server->on("Start", function(Server $server) {
-    echo "Swoole server running with 4 workers at http://127.0.0.1:8081\n";
+    echo "Swoole server running with 32 workers at http://127.0.0.1:8081\n";
 });
 
 // ... resto do código igual (on Request, etc) ...

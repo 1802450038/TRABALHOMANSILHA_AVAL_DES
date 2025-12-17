@@ -5,7 +5,7 @@ const fs = require('fs').promises;
 
 // Se for o processo "Mestre" (Gerente), ele cria os trabalhadores
 if (cluster.isPrimary) {
-    const numCPUs = 4; // Pega o número de núcleos do PC
+    const numCPUs = 32; // Pega o número de núcleos do PC
     console.log(`Master process running. Forking ${numCPUs} workers...`);
 
     for (let i = 0; i < numCPUs; i++) {

@@ -1,0 +1,4 @@
+para rodar e salvar o log basta executar o comando da seguinte forma
+crie um arquivo para o log e.g. resultworker.txt e logo em seguida
+execute o comando da seguinte maneira:
+    wrk -t32 -c400 -d10s http://127.0.0.1:8081 >> resultworker.txt
