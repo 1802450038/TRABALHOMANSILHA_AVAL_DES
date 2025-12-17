@@ -1,48 +1,41 @@
-# 3. Python (FastAPI + Uvicorn)
+# pythonsync.py
+# Framework: Flask (Padrão WSGI Síncrono)
+# Instalar: pip install flask
 
-# pip install fastapi uvicorn aiofiles
-
-# No Python, você não muda o código do arquivo server_async.py. Quem gerencia os workers é o Uvicorn (o programa que roda o servidor).
-# Em vez de rodar com python server_async.py, você deve usar o comando direto do uvicorn no terminal, passando a flag --workers.
-
-# Comando para rodar (No terminal):
-
-# Bash
-
-    # uvicorn async:app --host 127.0.0.1 --port 8083 --workers 4
-
-# async: É o nome do seu arquivo (sem o .py).
-
-# app: É o nome da variável FastAPI() dentro do script.
-
-# --workers 4: Cria 4 processos simultâneos.
-
+from flask import Flask, jsonify
 import json
-import aiofiles
-from fastapi import FastAPI
-import uvicorn
+import os
 
-app = FastAPI()
+app = Flask(__name__)
 
-@app.get("/")
-async def root():
-    # 'async with' garante que a leitura do arquivo não trave o servidor
-    async with aiofiles.open('posts.json', mode='r') as f:
-        content = await f.read()
-    
-    data = json.loads(content)
-    
-    # Processamento
-    items = []
-    for item in data:
-        items.append({
-            'id': item['id'],
-            'title': item['title'].upper()
-        })
+# Rota padrão síncrona
+@app.route('/')
+def root():
+    try:
+        # 1. Leitura Síncrona/Bloqueante
+        # O processo Python trava aqui até o arquivo ser lido do disco
+        # Não usamos 'async with', apenas o 'with' padrão
+        with open('posts.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
         
-    return items
+        # 2. Processamento
+        items = []
+        for item in data:
+            items.append({
+                'id': item['id'],
+                'title': item['title'].upper()
+            })
+            
+        return jsonify(items)
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == "__main__":
-    # Workers = 1 para ser justo na comparação de thread única com Node, 
-    # mas em produção você usaria mais.
-    uvicorn.run(app, host="127.0.0.1", port=8083, log_level="warning")
+    # Rodando com o servidor de desenvolvimento do Flask (Single Threaded por padrão na maioria dos contextos de teste simples)
+    print("Servidor Python (Flask) Síncrono rodando na porta 8083...")
+    app.run(host="127.0.0.1", port=8083, debug=False)
+
+
+    # Comando para rodar (No terminal):
+    # python3 pythonsync.py
