@@ -16,11 +16,15 @@ Composer
 NodeJs 
     -> Servidor JavaScript.
 NPM
-    -> Instalar dependencias node.
+    -> Instalar dependencias node:
+        npm install express
 Python 
     -> Executar Python.
+PIP
+    -> Gerenciar dependencias python
+        pip install flask --break-system-packages
 Glances 
-    -> pip install glances 
+    -> pip install glances --break-system-packages
     -> Monitorar as atividades.
     -> Para salvar relatorios automaticamente, 
         execute :  glances --export csv --export-csv-file ./relatorio.csv
@@ -36,13 +40,13 @@ Worker
 Após clonar o projeto em uma janela do tmux navegue até o diretório de cada linguagem e exevute o script assincrono ou sincrono para cada uma das linguagens a partir dos seguintes comandos.
 
 PHP -> Será ser executado na porta 8081
-    Sincrono :  php -S localhost:8081 phpsync.php
+    Sincrono :  php -S 127.0.0.1:8081 phpsync.php
     Assincrono : php phpasync.php
 
 JS -> Será executado na porta 8082
     Sincrono : node jssync.js
     Assincrono :node jsasync.js
-    
+
 PYTHON -> Será executado na porta 8083
     Sincrono : python3 pythonsync.py
     Assincrono : uvicorn pythonasync:app --host 127.0.0.1 --port 8083 --workers 32

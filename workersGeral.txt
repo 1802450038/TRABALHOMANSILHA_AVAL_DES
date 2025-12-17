@@ -1,0 +1,112 @@
+PHP SINCRONO
+Running 30s test @ http://127.0.0.1:8081
+  32 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    53.24ms   14.42ms 133.15ms   87.13%
+    Req/Sec    56.04     16.52   111.00     69.68%
+  53783 requests in 30.04s, 22.47MB read
+  Socket errors: connect 0, read 53783, write 0, timeout 0
+Requests/sec:   1790.23
+Transfer/sec:    765.74KB
+PHP SINCRONO
+Running 30s test @ http://127.0.0.1:8081
+  32 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   213.70ms   39.04ms 378.65ms   71.33%
+    Req/Sec    58.56     26.40   151.00     68.89%
+  53706 requests in 30.10s, 22.43MB read
+  Socket errors: connect 0, read 53706, write 0, timeout 0
+Requests/sec:   1784.24
+Transfer/sec:    763.21KB
+PHP ASSINCRONO
+Running 30s test @ http://127.0.0.1:8081
+  32 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.53ms    1.28ms  36.00ms   88.30%
+    Req/Sec     2.20k   495.60     3.77k    64.62%
+  2100993 requests in 30.05s, 709.30MB read
+Requests/sec:  69918.31
+Transfer/sec:     23.60MB
+PHP ASSINCRONO
+Running 30s test @ http://127.0.0.1:8081
+  32 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     5.17ms    3.46ms  74.21ms   80.53%
+    Req/Sec     2.42k   495.40     6.28k    67.78%
+  2315982 requests in 30.10s, 781.88MB read
+Requests/sec:  76953.84
+Transfer/sec:     25.98MB
+JS SINCRONO
+Running 30s test @ http://127.0.0.1:8082
+  32 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    99.18ms   89.04ms   1.58s    97.58%
+    Req/Sec    33.78      8.14    90.00     83.46%
+  31771 requests in 30.04s, 13.85MB read
+Requests/sec:   1057.56
+Transfer/sec:    471.98KB
+JS SINCRONO
+Running 30s test @ http://127.0.0.1:8082
+  32 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   323.81ms  103.92ms   2.00s    75.85%
+    Req/Sec    37.56     20.82   272.00     73.64%
+  30666 requests in 30.10s, 13.37MB read
+  Socket errors: connect 0, read 0, write 0, timeout 264
+Requests/sec:   1018.80
+Transfer/sec:    454.68KB
+JS ASSINCRONO
+Running 30s test @ http://127.0.0.1:8082
+  32 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    13.35ms   12.08ms 272.93ms   89.40%
+    Req/Sec   259.35     86.79   636.00     67.88%
+  248116 requests in 30.08s, 108.14MB read
+Requests/sec:   8248.61
+Transfer/sec:      3.59MB
+JS ASSINCRONO
+Running 30s test @ http://127.0.0.1:8082
+  32 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    41.12ms   28.96ms 577.99ms   89.57%
+    Req/Sec   314.58     66.16     2.20k    72.48%
+  299593 requests in 30.10s, 130.57MB read
+Requests/sec:   9953.41
+Transfer/sec:      4.34MB
+PYTHON SINCRONO
+Running 30s test @ http://127.0.0.1:8083
+  32 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   317.81ms   72.21ms 505.02ms   60.48%
+    Req/Sec    10.70      5.19    30.00     67.04%
+  9010 requests in 30.05s, 3.33MB read
+Requests/sec:    299.79
+Transfer/sec:    113.60KB
+PYTHON SINCRONO
+Running 30s test @ http://127.0.0.1:8083
+  32 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   486.52ms  194.96ms   1.97s    88.65%
+    Req/Sec    14.13     11.77   121.00     79.13%
+  8712 requests in 30.07s, 3.22MB read
+  Socket errors: connect 0, read 29, write 0, timeout 114
+Requests/sec:    289.77
+Transfer/sec:    109.79KB
+PYTHON ASSINCRONO
+Running 30s test @ http://127.0.0.1:8083
+  32 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    47.93ms    5.88ms 155.11ms   91.50%
+    Req/Sec    62.61      8.29    90.00     85.88%
+  60162 requests in 30.09s, 19.92MB read
+Requests/sec:   1999.42
+Transfer/sec:    677.90KB
+PYTHON ASSINCRONO
+Running 30s test @ http://127.0.0.1:8083
+  32 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    67.31ms   18.66ms 221.71ms   74.04%
+    Req/Sec   178.88     28.45   272.00     65.50%
+  171481 requests in 30.09s, 56.78MB read
+Requests/sec:   5699.46
+Transfer/sec:      1.89MB

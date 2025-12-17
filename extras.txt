@@ -2,3 +2,21 @@ para rodar e salvar o log basta executar o comando da seguinte forma
 crie um arquivo para o log e.g. resultworker.txt e logo em seguida
 execute o comando da seguinte maneira:
     wrk -t32 -c400 -d10s http://127.0.0.1:8081 >> resultworker.txt
+
+Testes executados
+Node        Sinc    100 X
+Node        Sinc    400 X
+Node        Assinc  100 X
+Node        Assinc  400 X
+
+PHP         Sinc    100 X
+PHP         Sinc    400 X
+PHP         Assinc  100 X
+PHP         Assinc  400 X
+
+Python      Sinc    100 X
+Python      Sinc    400 X
+Python      Assinc  100 X
+Python      Assinc  400 X
+
+
