@@ -4,32 +4,53 @@
 
 Este repositório contém os scripts e dados para a "Proposta de Trabalho" que realiza uma análise comparativa de desempenho entre PHP, Java e Python, com foco em operações síncronas e assíncronas.
 
-O objetivo é executar um *workload* de ETL idêntico em cada linguagem, medir o desempenho (tempo, memória, CPU) e, em seguida, analisar os resultados coletados.
+O Objetivo é avaliar e comparar o Throughput (Requisições por Segundo) e a Latência de aplicações desenvolvidas em PHP, Node.js e Python, contrastando suas implementações tradicionais (Síncronas/Single-Thread) com suas implementações modernas de alta performance (Assíncronas/Multi-Workers).
 
-## Fluxo de Trabalho
+## Requerimentos
+PHP 8.3
+    -> Executar scripts php.
+Swoole 
+    -> Extensão para tornar php assincrono.
+Composer
+    -> Instalar dependencias do PHP.
+NodeJs 
+    -> Servidor JavaScript.
+NPM
+    -> Instalar dependencias node.
+Python 
+    -> Executar Python.
+Glances 
+    -> pip install glances 
+    -> Monitorar as atividades.
+    -> Para salvar relatorios automaticamente, 
+        execute :  glances --export csv --export-csv-file ./relatorio.csv
+Tmux 
+    -> Para gerenciar e visualizar o terminal em janelas divididas de acesso ssh.
+Worker
+    -> Para simular cargas de trabalhos com diferentes threads.
 
-O processo é dividido em duas fases:
+## Executando o projeto
 
-**Fase 1: Execução do Workload (Coleta de Dados)**
-1.  Use o script `setup_database.py` para criar o banco de dados e popular as tabelas de *lookup* (`cargos`, `cidades`) com os dados de `FUN.csv` e `ORG.csv`.
-2.  Execute os scripts de ETL encontrados na pasta `/scripts_etl` (ex: `etl_python.py`, `etl_php.php`).
-3.  **Cada script de ETL é responsável por:**
-    * Executar a tarefa de ETL (ler `202210_PEP.csv`, consultar o DB, inserir em `pessoas`).
-    * Medir o próprio tempo de execução e o pico de uso de memória.
-    * Anexar uma nova linha com esses resultados ao arquivo `resultados_workload.csv`.
 
-**Fase 2: Análise dos Resultados (Caracterização do Workload)**
-1.  Após executar *todos* os testes (diferentes linguagens, modos, arquiteturas), o arquivo `resultados_workload.csv` estará completo.
-2.  Execute o script de análise em Python (`scripts_analise/analise_workload.py`).
-3.  Este script lerá o `resultados_workload.csv` e aplicará as técnicas de caracterização (Média, K-Means Clustering, PCA) para analisar os dados e gerar *insights*.
+### Subindo os sevidores
+Após clonar o projeto em uma janela do tmux navegue até o diretório de cada linguagem e exevute o script assincrono ou sincrono para cada uma das linguagens a partir dos seguintes comandos.
 
-## Estrutura do Repositório
+PHP -> Será ser executado na porta 8081
+    Sincrono :  php -S localhost:8081 phpsync.php
+    Assincrono : php phpasync.php
 
-* `/dados_lookup`: Contém `FUN.csv` e `ORG.csv` para popular o DB.
-* `/dados_entrada`: Contém o arquivo `202210_PEP.csv` a ser processado.
-* `/scripts_etl`: (Fase 1) Scripts de *workload* (PHP, Java, Python) que executam a tarefa e salvam seus resultados (FALTA SER DESENVOLVIDO).
-* `/saida_esperada`: Contém o arquivo `RESALL.csv` resultado esperado.
-* `/scripts_analise`: (Fase 2) Script Python que analisa os resultados coletados.
-* `setup_database.py`: (Pré-requisito) Script para preparar o ambiente do banco de dados.
-* `resultados_workload.csv`: (Arquivo de Saída) O arquivo mestre onde *todos* os scripts de ETL anexam seus resultados.
-* `requirements.txt`: Dependências Python (para *ambas* as fases).
+JS -> Será executado na porta 8082
+    Sincrono : node jssync.js
+    Assincrono :node jsasync.js
+    
+PYTHON -> Será executado na porta 8083
+    Sincrono : python3 pythonsync.py
+    Assincrono : uvicorn pythonasync:app --host 127.0.0.1 --port 8083 --workers 32
+
+### Executando os Workers
+PHP 
+ -> wrk -t32 -c100 -d10s http://127.0.0.1:8081
+JS
+ -> wrk -t32 -c100 -d10s http://127.0.0.1:8083
+PYTHON
+ -> wrk -t32 -c100 -d10s http://127.0.0.1:8083
