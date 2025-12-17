@@ -1,2 +1,0 @@
-pecl install swoole
-para instalar swoole no macOS -> brew install pkg-config brotli
